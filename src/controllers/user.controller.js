@@ -9,10 +9,20 @@ const post = async (req, res) => {
     });
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(mapStatusHTTP('INTERNAL_SERVER_ERROR')).json({ message: e.message });
+  }
+};
+
+const getAll = async (_req, res) => {
+  try {
+    const { status, data } = await userService.getAll();
+    res.status(mapStatusHTTP(status)).json(data);
+  } catch (e) {
+    res.status(mapStatusHTTP('INTERNAL_SERVER_ERROR')).json({ message: e.message });
   }
 };
 
 module.exports = {
   post,
+  getAll,
 };
