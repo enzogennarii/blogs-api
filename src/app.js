@@ -22,7 +22,7 @@ app.use(validateToken);
 app.get('/user', userController.getAll);
 
 // Requisito 6
-// app.metodo('', );
+app.get('/user/:id', userController.getById);
 
 // Requisito 8
 // app.metodo('', );

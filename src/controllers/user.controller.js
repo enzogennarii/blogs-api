@@ -22,7 +22,18 @@ const getAll = async (_req, res) => {
   }
 };
 
+const getById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status, data } = await userService.getById(id);
+    res.status(mapStatusHTTP(status)).json(data);
+  } catch (e) {
+    res.status(mapStatusHTTP('INTERNAL_SERVER_ERROR')).json({ message: e.message });
+  }
+};
+
 module.exports = {
   post,
   getAll,
+  getById,
 };
