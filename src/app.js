@@ -1,7 +1,7 @@
 const express = require('express');
 
-const { validateLoginFields } = require('./middlewares');
-const { loginController } = require('./controllers');
+const { validateLoginFields, validateNewUser } = require('./middlewares');
+const { loginController, userController } = require('./controllers');
 
 const app = express();
 
@@ -12,5 +12,7 @@ app.get('/', (_request, response) => {
 app.use(express.json());
 
 app.post('/login', validateLoginFields, loginController.post);
+
+app.post('/user', validateNewUser, userController.post);
 
 module.exports = app;
