@@ -30,7 +30,7 @@ app.get('/user/:id', userController.getById);
 app.post('/categories', validateNewCategory, categoryController.post);
 
 // Requisito 9
-// app.metodo('', );
+app.get('/categories', categoryController.getAll);
 
 // Requisito 12
 // app.metodo('', );

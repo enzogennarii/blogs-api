@@ -11,6 +11,16 @@ const post = async (req, res) => {
   }
 };
 
+const getAll = async (_req, res) => {
+  try {
+    const { status, data } = await categoryService.getAll();
+    res.status(mapStatusHTTP(status)).json(data);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+};
+
 module.exports = {
   post,
+  getAll,
 };
