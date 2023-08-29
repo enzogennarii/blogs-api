@@ -31,7 +31,25 @@ const getAll = async () => {
   return { status: 'SUCCESSFUL', data: posts };
 };
 
+const getById = async (id) => {
+  const postId = Number(id);
+  const blogPost = await BlogPost.findOne({
+    where: { id: postId },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+
+  if (!blogPost) {
+    return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
+  }
+
+  return { status: 'SUCCESSFUL', data: blogPost };
+};
+
 module.exports = {
   post,
   getAll,
+  getById,
 };

@@ -7,6 +7,7 @@ const {
   validateNewCategory,
   validateNewPost,
 } = require('./middlewares');
+
 const {
   loginController,
   userController,
@@ -48,7 +49,7 @@ app.post('/post', validateNewPost, postController.post);
 app.get('/post', postController.getAll);
 
 // Requisito 14
-// app.metodo('', );
+app.get('/post/:id', postController.getById);
 
 // Requisito 15
 // app.metodo('', );
