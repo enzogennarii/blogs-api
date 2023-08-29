@@ -9,7 +9,7 @@ const post = async (req, res) => {
     });
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(mapStatusHTTP('INTERNAL_SERVER_ERROR')).json({ message: e.message });
+    res.status(500).json({ message: e.message });
   }
 };
 
@@ -18,7 +18,7 @@ const getAll = async (_req, res) => {
     const { status, data } = await userService.getAll();
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(mapStatusHTTP('INTERNAL_SERVER_ERROR')).json({ message: e.message });
+    res.status(500).json({ message: e.message });
   }
 };
 
@@ -28,7 +28,17 @@ const getById = async (req, res) => {
     const { status, data } = await userService.getById(id);
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(mapStatusHTTP('INTERNAL_SERVER_ERROR')).json({ message: e.message });
+    res.status(500).json({ message: e.message });
+  }
+};
+
+const removeUser = async (req, res) => {
+  try {
+    const { userId } = req;
+    const { status } = await userService.removeUser(userId);
+    res.status(mapStatusHTTP(status)).end();
+  } catch (e) {
+    res.status(500).json({ message: e.message });
   }
 };
 
@@ -36,4 +46,5 @@ module.exports = {
   post,
   getAll,
   getById,
+  removeUser,
 };

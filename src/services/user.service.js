@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const { User, sequelize } = require('../models');
 
 const post = async ({ displayName, email, password, image }) => {
   const newUser = await User.create({ displayName, email, password, image });
@@ -34,8 +34,19 @@ const getById = async (id) => {
   return { status: 'SUCCESSFUL', data: user };
 };
 
+const removeUser = async (id) => {
+  const transaction = await sequelize.transaction();
+  await Promise.all([
+    User.destroy({ where: { id }, transaction }),
+  ]);
+  await transaction.commit();
+
+  return { status: 'NO_CONTENT' };
+};
+
 module.exports = {
   post,
   getAll,
   getById,
+  removeUser,
 };

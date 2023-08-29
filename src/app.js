@@ -60,7 +60,7 @@ app.put('/post/:id', validatePostUpdate, validateAuthorization, postController.u
 app.delete('/post/:id', validateAuthorization, postController.remove);
 
 // Requisito 17
-// app.metodo('', );
+app.delete('/user/me', userController.removeUser);
 
 // Requisito 18
 // app.metodo('', );

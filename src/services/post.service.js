@@ -1,10 +1,4 @@
-const Sequelize = require('sequelize');
-
-const config = require('../config/config');
-const { BlogPost, PostCategory, User, Category } = require('../models');
-
-const env = process.env.NODE_ENV || 'development';
-const sequelize = new Sequelize(config[env]);
+const { BlogPost, PostCategory, User, Category, sequelize } = require('../models');
 
 const post = async ({ userId, title, content, categoryIds }) => {
   const transaction = await sequelize.transaction();
@@ -60,7 +54,6 @@ const remove = async (postId) => {
   const transaction = await sequelize.transaction();
 
   const results = await Promise.all([
-    PostCategory.destroy({ where: { postId: id }, transaction }),
     BlogPost.destroy({ where: { id }, transaction }),
   ]);
 
@@ -74,18 +67,6 @@ const remove = async (postId) => {
 
   return { status: 'NO_CONTENT' };
 };
-
-// const remove = async (postId) => {
-//   const id = Number(postId);
-//   const deletedRows = await BlogPost.destroy({ where: { id } });
-//   const deletedRows = await BlogPost.destroy({ where: { id } });
-
-//   if (!deletedRows) {
-//     return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
-//   }
-
-//   return { status: 'NO_CONTENT' };
-// };
 
 module.exports = {
   post,
