@@ -1,9 +1,18 @@
 const express = require('express');
 
 const {
-  validateLoginFields, validateNewUser, validateToken, validateNewCategory,
+  validateLoginFields, 
+  validateNewUser,
+  validateToken,
+  validateNewCategory,
+  validateNewPost,
 } = require('./middlewares');
-const { loginController, userController, categoryController } = require('./controllers');
+const {
+  loginController,
+  userController,
+  categoryController,
+  postController,
+} = require('./controllers');
 
 const app = express();
 
@@ -33,10 +42,10 @@ app.post('/categories', validateNewCategory, categoryController.post);
 app.get('/categories', categoryController.getAll);
 
 // Requisito 12
-// app.metodo('', );
+app.post('/post', validateNewPost, postController.post);
 
 // Requisito 13
-// app.metodo('', );
+app.get('/post', postController.getAll);
 
 // Requisito 14
 // app.metodo('', );

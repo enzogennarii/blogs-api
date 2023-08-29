@@ -22,10 +22,12 @@ module.exports = (sequelize, DataTypes) => {
     published: {
       allowNull: false,
       type: DataTypes.DATE,
+      defaultValue: Date.now(),
     },
     updated: {
       allowNull: false,
       type: DataTypes.DATE,
+      defaultValue: Date.now(),
     },
   }, {
     tableName: 'blog_posts',

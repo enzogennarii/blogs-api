@@ -11,6 +11,8 @@ const validateToken = (req, res, next) => {
     if (!decoded) {
       return res.status(401).json({ message: 'Expired or invalid token' });
     }
+
+    req.userId = decoded.id;
   
     next();
   } catch (e) {
