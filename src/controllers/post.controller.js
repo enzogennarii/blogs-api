@@ -43,9 +43,26 @@ const update = async (req, res) => {
   }
 };
 
+const remove = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const serviceResponse = await postService.remove(id);
+
+    if (serviceResponse.status !== 'NO_CONTENT') {
+      const { status, data } = serviceResponse;
+      res.status(mapStatusHTTP(status)).json(data);
+    }
+
+    res.status(mapStatusHTTP(serviceResponse.status)).end();
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+};
+
 module.exports = {
   post,
   getAll,
   getById,
   update,
+  remove,
 };

@@ -55,9 +55,42 @@ const update = async ({ id, title, content }) => {
   return { status: 'SUCCESSFUL', data: updatedPost };
 };
 
+const remove = async (postId) => {
+  const id = Number(postId);
+  const transaction = await sequelize.transaction();
+
+  const results = await Promise.all([
+    PostCategory.destroy({ where: { postId: id }, transaction }),
+    BlogPost.destroy({ where: { id }, transaction }),
+  ]);
+
+  const postNotFound = results.some((deletedRows) => !deletedRows);
+
+  if (postNotFound) {
+    return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
+  }
+
+  await transaction.commit();
+
+  return { status: 'NO_CONTENT' };
+};
+
+// const remove = async (postId) => {
+//   const id = Number(postId);
+//   const deletedRows = await BlogPost.destroy({ where: { id } });
+//   const deletedRows = await BlogPost.destroy({ where: { id } });
+
+//   if (!deletedRows) {
+//     return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
+//   }
+
+//   return { status: 'NO_CONTENT' };
+// };
+
 module.exports = {
   post,
   getAll,
   getById,
   update,
+  remove,
 };

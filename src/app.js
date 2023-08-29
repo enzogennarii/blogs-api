@@ -57,7 +57,7 @@ app.get('/post/:id', postController.getById);
 app.put('/post/:id', validatePostUpdate, validateAuthorization, postController.update);
 
 // Requisito 16
-// app.metodo('', );
+app.delete('/post/:id', validateAuthorization, postController.remove);
 
 // Requisito 17
 // app.metodo('', );
