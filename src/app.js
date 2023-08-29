@@ -6,6 +6,8 @@ const {
   validateToken,
   validateNewCategory,
   validateNewPost,
+  validatePostUpdate,
+  validateAuthorization,
 } = require('./middlewares');
 
 const {
@@ -52,7 +54,7 @@ app.get('/post', postController.getAll);
 app.get('/post/:id', postController.getById);
 
 // Requisito 15
-// app.metodo('', );
+app.put('/post/:id', validatePostUpdate, validateAuthorization, postController.update);
 
 // Requisito 16
 // app.metodo('', );
