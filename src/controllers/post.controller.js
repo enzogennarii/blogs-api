@@ -59,10 +59,21 @@ const remove = async (req, res) => {
   }
 };
 
+const getByQuery = async (req, res) => {
+  try {
+    const { q } = req.query;
+    const { status, data } = await postService.getByQuery(q);
+    res.status(mapStatusHTTP(status)).json(data);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+};
+
 module.exports = {
   post,
   getAll,
   getById,
   update,
   remove,
+  getByQuery,
 };

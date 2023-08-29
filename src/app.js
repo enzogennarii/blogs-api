@@ -50,6 +50,9 @@ app.post('/post', validateNewPost, postController.post);
 // Requisito 13
 app.get('/post', postController.getAll);
 
+// Requisito 18
+app.get('/post/search', postController.getByQuery);
+
 // Requisito 14
 app.get('/post/:id', postController.getById);
 
@@ -61,8 +64,5 @@ app.delete('/post/:id', validateAuthorization, postController.remove);
 
 // Requisito 17
 app.delete('/user/me', userController.removeUser);
-
-// Requisito 18
-// app.metodo('', );
 
 module.exports = app;
