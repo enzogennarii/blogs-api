@@ -29,7 +29,7 @@ app.post('/login', validateLoginFields, loginController.post);
 // Requisito 4
 app.post('/user', validateNewUser, userController.post);
 
-// Middleware de validação de Token
+// Middleware de validação de Token de autenticação
 app.use(validateToken);
 
 // Requisito 5
