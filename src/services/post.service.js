@@ -35,12 +35,8 @@ const update = async ({ id, title, content }) => {
 };
 
 const remove = async (postId) => {
-  const transaction = await sequelize.transaction();
-  const results = await Promise.all([
-    BlogPost.destroy({ where: { id: Number(postId) }, transaction }),
-  ]);
-  if (results.some((deletedRows) => !deletedRows)) return postNotFoundResponseObj;
-  await transaction.commit();
+  const deletedRows = await BlogPost.destroy({ where: { id: Number(postId) } });
+  if (!deletedRows) return postNotFoundResponseObj;
   return { status: 'NO_CONTENT' };
 };
 

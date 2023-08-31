@@ -38,9 +38,9 @@ const remove = async (req, res) => {
     const serviceResponse = await postService.remove(req.params.id);
     if (serviceResponse.status !== 'NO_CONTENT') {
       const { status, data } = serviceResponse;
-      res.status(mapStatusHTTP(status)).json(data);
+      return res.status(mapStatusHTTP(status)).json(data);
     }
-    res.status(mapStatusHTTP(serviceResponse.status)).end();
+    return res.status(mapStatusHTTP(serviceResponse.status)).end();
   } catch (e) { res.status(500).json({ message: e.message }); }
 };
 
