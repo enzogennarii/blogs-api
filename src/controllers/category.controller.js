@@ -6,7 +6,7 @@ const getAll = async (_req, res) => {
     const { status, data } = await categoryService.getAll();
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 
@@ -16,7 +16,7 @@ const post = async (req, res) => {
     const { status, data } = await categoryService.post({ name });
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 

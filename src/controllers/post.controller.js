@@ -6,7 +6,7 @@ const getAll = async (_req, res) => {
     const { status, data } = await postService.getAll();
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 
@@ -16,7 +16,7 @@ const getById = async (req, res) => {
     const { status, data } = await postService.getById(id);
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 
@@ -24,7 +24,7 @@ const getByQuery = async (req, res) => {
   try {
     const { status, data } = await postService.getByQuery(req.query.q);
     res.status(mapStatusHTTP(status)).json(data);
-  } catch (e) { res.status(500).json({ message: e.message }); }
+  } catch (e) { res.status(500).json({ message: 'Algo deu errado!' }); }
 };
 
 const post = async (req, res) => {
@@ -34,7 +34,7 @@ const post = async (req, res) => {
     const { status, data } = await postService.post(postData);
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 
@@ -45,7 +45,7 @@ const update = async (req, res) => {
     const { status, data } = await postService.update({ id, title, content });
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 
@@ -58,7 +58,7 @@ const remove = async (req, res) => {
     }
     return res.status(mapStatusHTTP(serviceResponse.status)).end();
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 

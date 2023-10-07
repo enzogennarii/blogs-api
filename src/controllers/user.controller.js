@@ -6,7 +6,7 @@ const getAll = async (_req, res) => {
     const { status, data } = await userService.getAll();
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 
@@ -16,7 +16,7 @@ const getById = async (req, res) => {
     const { status, data } = await userService.getById(id);
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 
@@ -28,7 +28,7 @@ const post = async (req, res) => {
     });
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 
@@ -38,7 +38,7 @@ const removeUser = async (req, res) => {
     const { status } = await userService.removeUser(userId);
     res.status(mapStatusHTTP(status)).end();
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ message: 'Algo deu errado!' });
   }
 };
 
