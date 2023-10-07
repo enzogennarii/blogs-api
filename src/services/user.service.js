@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const { User, sequelize } = require('../database/models');
+const { User, sequelize } = require('../models');
 
 const post = async ({ displayName, email, password, image }) => {
   const newUser = await User.create({ displayName, email, password, image });

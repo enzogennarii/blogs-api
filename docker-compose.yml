@@ -5,9 +5,7 @@ services:
     build: .
     user: node
     container_name: blogs_api
-    tty: true
-    stdin_open: true
-    command: bash
+    command: npm run start
     restart: on-failure
     working_dir: /app
     volumes:

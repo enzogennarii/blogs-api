@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const { User } = require('../database/models');
+const { User } = require('../models');
 
 const invalidFieldsResponse = {
   status: 'BAD_REQUEST',
