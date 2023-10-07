@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User } = require('../database/models');
 const userSchema = require('./schemas/userSchema');
 
 const validateNewUser = async (req, res, next) => {

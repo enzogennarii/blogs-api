@@ -1,4 +1,4 @@
-const { Category } = require('../models');
+const { Category } = require('../database/models');
 const postSchema = require('./schemas/postSchema');
 
 const validateNewPost = async (req, res, next) => {

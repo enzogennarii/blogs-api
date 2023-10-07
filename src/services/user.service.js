@@ -1,15 +1,13 @@
 const jwt = require('jsonwebtoken');
-const { User, sequelize } = require('../models');
+
+const { User, sequelize } = require('../database/models');
 
 const post = async ({ displayName, email, password, image }) => {
   const newUser = await User.create({ displayName, email, password, image });
-  const token = jwt.sign(
-      {
-        id: newUser.id,
-        name: newUser.displayName,
-      },
-      process.env.JWT_SECRET,
-    );
+  const token = jwt.sign({
+      id: newUser.id,
+      name: newUser.displayName,
+    }, process.env.JWT_SECRET);
   return { status: 'CREATED', data: { token } };
 };
 

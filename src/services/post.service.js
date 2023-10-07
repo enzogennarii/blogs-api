@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { BlogPost, PostCategory, User, Category, sequelize } = require('../models');
+const { BlogPost, PostCategory, User, Category, sequelize } = require('../database/models');
 
 const postNotFoundResponseObj = { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
 const includeKeyStructure = [{ model: User, as: 'user', attributes: { exclude: ['password'] } },

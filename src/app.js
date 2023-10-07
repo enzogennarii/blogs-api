@@ -21,48 +21,34 @@ const app = express();
 
 app.use(express.json());
 
-app.get('/', (_req, res) => res.send());
+app.get('/', (_req, res) => res.send('Api rodando!'));
 
-// Requisito 3
 app.post('/login', validateLoginFields, loginController.post);
 
-// Requisito 4
 app.post('/user', validateNewUser, userController.post);
 
-// Middleware de validação de Token de autenticação
 app.use(validateToken);
 
-// Requisito 5
 app.get('/user', userController.getAll);
 
-// Requisito 6
 app.get('/user/:id', userController.getById);
 
-// Requisito 8
 app.post('/categories', validateNewCategory, categoryController.post);
 
-// Requisito 9
 app.get('/categories', categoryController.getAll);
 
-// Requisito 12
 app.post('/post', validateNewPost, postController.post);
 
-// Requisito 13
 app.get('/post', postController.getAll);
 
-// Requisito 18
 app.get('/post/search', postController.getByQuery);
 
-// Requisito 14
 app.get('/post/:id', postController.getById);
 
-// Requisito 15
 app.put('/post/:id', validatePostUpdate, validateAuthorization, postController.update);
 
-// Requisito 16
 app.delete('/post/:id', validateAuthorization, postController.remove);
 
-// Requisito 17
 app.delete('/user/me', userController.removeUser);
 
 module.exports = app;
