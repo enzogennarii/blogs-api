@@ -1,12 +1,13 @@
 const { postService } = require('../services');
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
+const internalErrorResponse = require('../utils/internalErrorResponse');
 
 const getAll = async (_req, res) => {
   try {
     const { status, data } = await postService.getAll();
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: 'Algo deu errado!' });
+    res.status(500).json(internalErrorResponse);
   }
 };
 
@@ -16,7 +17,7 @@ const getById = async (req, res) => {
     const { status, data } = await postService.getById(id);
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: 'Algo deu errado!' });
+    res.status(500).json(internalErrorResponse);
   }
 };
 
@@ -24,7 +25,7 @@ const getByQuery = async (req, res) => {
   try {
     const { status, data } = await postService.getByQuery(req.query.q);
     res.status(mapStatusHTTP(status)).json(data);
-  } catch (e) { res.status(500).json({ message: 'Algo deu errado!' }); }
+  } catch (e) { res.status(500).json(internalErrorResponse); }
 };
 
 const post = async (req, res) => {
@@ -34,7 +35,7 @@ const post = async (req, res) => {
     const { status, data } = await postService.post(postData);
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: 'Algo deu errado!' });
+    res.status(500).json(internalErrorResponse);
   }
 };
 
@@ -45,7 +46,7 @@ const update = async (req, res) => {
     const { status, data } = await postService.update({ id, title, content });
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: 'Algo deu errado!' });
+    res.status(500).json(internalErrorResponse);
   }
 };
 
@@ -58,7 +59,7 @@ const remove = async (req, res) => {
     }
     return res.status(mapStatusHTTP(serviceResponse.status)).end();
   } catch (e) {
-    res.status(500).json({ message: 'Algo deu errado!' });
+    res.status(500).json(internalErrorResponse);
   }
 };
 

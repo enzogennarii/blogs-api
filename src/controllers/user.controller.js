@@ -1,12 +1,13 @@
 const { userService } = require('../services');
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
+const internalErrorResponse = require('../utils/internalErrorResponse');
 
 const getAll = async (_req, res) => {
   try {
     const { status, data } = await userService.getAll();
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: 'Algo deu errado!' });
+    res.status(500).json(internalErrorResponse);
   }
 };
 
@@ -16,7 +17,7 @@ const getById = async (req, res) => {
     const { status, data } = await userService.getById(id);
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: 'Algo deu errado!' });
+    res.status(500).json(internalErrorResponse);
   }
 };
 
@@ -28,7 +29,7 @@ const post = async (req, res) => {
     });
     res.status(mapStatusHTTP(status)).json(data);
   } catch (e) {
-    res.status(500).json({ message: 'Algo deu errado!' });
+    res.status(500).json(internalErrorResponse);
   }
 };
 
@@ -38,7 +39,7 @@ const removeUser = async (req, res) => {
     const { status } = await userService.removeUser(userId);
     res.status(mapStatusHTTP(status)).end();
   } catch (e) {
-    res.status(500).json({ message: 'Algo deu errado!' });
+    res.status(500).json(internalErrorResponse);
   }
 };
 
